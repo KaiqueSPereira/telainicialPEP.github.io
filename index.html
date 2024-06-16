@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="./IMG/Icons/Iconprotuário.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/Global.css">
+    <link rel="stylesheet" href="./CSS/Index.css">
+    <link rel="stylesheet" href="./CSS/novaconsulta.css">
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <script src="./JS/Index.js" defer></script>
+    <script src="./JS/novaconsulta.js" defer></script>
+    <script src="./JS/novomedicamento.js" defer></script>
+    <!-- Icones Google -->          
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <!-- Fontes Google -->
+    <link href='https://fonts.googleapis.com/css?family=DM Sans' rel='stylesheet'>
+    <title>Inicio</title>
+</head>
+<body style="padding-top: 120px;">
+    <header class="header">
+        <div class="container">
+            <div class="navbar-header">
+                <a ><img class="logo" src="./img/Icons/Iconprotuário.png" alt=""></a>
+            </div>
+        </div>
+        <nav class="row">
+            <div class="popover__main">
+                <div class="popover__wrapper">
+                    <div class="container-menu"><a href="#consulta"><img src="./img/Icons/InfBlack.svg" alt="">Consultas</a></div>
+                </div>
+                <div class="popover__wrapper">
+                    <div class="container-menu"><a><img src="./img/Icons/ExaBlack.svg">Exames</a></div>
+                    <div class="popover__content">
+                        <a href="" class="menu-item">Adicionar Exames</a>
+                        <a href="" class="menu-item">Ultimos Exames</a>
+                    </div>
+                </div>
+                <div class="popover__wrapper">
+                    <div class="container-menu"><a href="#medicamento"><img src="./img/Icons/MedBlack.svg" alt="">Medicamentos</a></div>
+                </div>
+            </div>
+            <div class="popover__wrapper">
+                <div class="container-menu">
+                    <span class="material-symbols-outlined">menu</span>
+                    <div class="popover__content">
+                        <a href="" class="menu-item">
+                            <span class="material-symbols-outlined">person</span>
+                            <p>Perfil</p>
+                        </a>
+                        <a sec:authorize="isAuthenticated()" href="@{/logout}" class="menu-item" style="color: red;">
+                            <span class="material-symbols-outlined">output</span>
+                            <p>Sair</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <span><h1>Olá</h1></span> <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+            <span><h3> Seja bem-vindo ao seu Prontuário</h3></span>
+        </section>
+        <section class="dvConsultas" id="consulta">
+            <span class="title"><h1>Consultas</h1><img src="./img/Icons/InfBlack.svg" class="img1">
+                <!-- Botão para abrir o modal "Nova Consulta" -->
+            <div><a href="#" class="addItem" id="openModalConsulta"><img src="./img/Icons/addBlack.svg" alt="Nova Consulta">Nova Consulta</a></div>
+                <!-- Modal "Nova Consulta" -->
+            <div id="consultaModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form id="consulta-form">
+                        <div class="form-group">
+                            <label for="data-consulta">Data da Consulta:</label>
+                            <input type="date" id="data-consulta" name="data-consulta" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo-consulta">Tipo de Consulta:</label>
+                            <select id="tipo-consulta" name="tipo-consulta" required>
+                                <option value="">Selecione</option>
+                                <option value="rotina">Rotina</option>
+                                <option value="emergencia">Emergência</option>
+                                <option value="exame">Exame</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="queixas-group" style="display:none;">
+                            <label for="queixas">Queixas:</label>
+                            <textarea id="queixas" name="queixas" rows="4"></textarea>
+                        </div>
+                        <div class="form-group" id="tratamentos-group" style="display:none;">
+                            <label for="tratamentos">Tratamentos em Vigor:</label>
+                            <select id="tratamentos" name="tratamentos">
+                                <option value="tratamento1">Tratamento 1</option>
+                                <option value="tratamento2">Tratamento 2</option>
+                                <option value="tratamento3">Tratamento 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="tipo-exame-group" style="display:none;">
+                            <label for="tipo-exame">Tipo de Exame:</label>
+                            <input type="text" id="tipo-exame" name="tipo-exame">
+                        </div>
+                        <div class="form-group" id="profissional-group" style="display:none;">
+                            <label for="profissional">Profissional:</label>
+                            <input type="text" id="profissional" name="profissional">
+                        </div>
+                        <div class="form-group">
+                            <label for="local-consulta">Local da Consulta:</label>
+                            <input type="text" id="local-consulta" name="local-consulta" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="anexos">Anexar Arquivos:</label>
+                            <input type="file" id="anexos" name="anexos" multiple>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Enviar</button>
+                        </div>
+                    </form>  
+                </div>
+            </div>
+        </section>
+        <section class="dvConsultas">
+            <span class="title" id="medicamento"><h1>Medicamentos</h1><img src="./img/Icons/MedBlack.svg" class="img1">
+            <!-- Botão para abrir o modal "Novo Medicamento" -->
+            <div>
+                <a href="#" class="addItem" id="openModalMedicamento">
+                    <img src="./img/Icons/addBlack.svg" alt="Novo Medicamento">Novo Medicamento</a>
+            </div>
+            <!-- Modal "Novo Medicamento" -->
+            <div id="medicamentoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div id="medicamentoForm">
+                        <form id="medicamento-form">
+                            <div class="form-group">
+                                <label for="nome-medicamento">Nome do Medicamento:</label>
+                                <input type="text" id="nome-medicamento" name="nome-medicamento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="posologia">Posologia:</label>
+                                <input type="text" id="posologia" name="posologia" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="observacao">Observação:</label>
+                                <textarea id="observacao" name="observacao" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="frequencia">Frequência:</label>
+                                <select id="frequencia" name="frequencia" required>
+                                    <option value="none">Selecione</option>
+                                    <option value="continuo">Contínuo</option>
+                                    <option value="tratamento">Tratamento</option>
+                                    <option value="esporadico">Esporádico</option>
+                                </select>
+                            </div>
+                            <!-- Campos para medicamento de Uso Contínuo -->
+                            <div id="usoContinuoFields" style="display:none;">
+                                <div class="form-group">
+                                    <label for="tratamento">Tratamento:</label>
+                                    <input type="text" id="tratamento" name="tratamento">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dose">Dose:</label>
+                                    <input type="number" id="dose" name="dose" min="1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="estoque">Estoque:</label>
+                                    <input type="number" id="estoque" name="estoque" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intervalo">Intervalo:</label>
+                                    <input type="number" id="intervalo" name="intervalo" min="1" required>
+                                    <select id="unidade-intervalo-Contino" name="unidade-intervalo" required>
+                                        <option value="dias">dias</option>
+                                        <option value="semanas">semanas</option>
+                                        <option value="meses">meses</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Duração do Medicamento:</label>
+                                    <span id="duracao"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="anexo-receita">Anexar Receita:</label>
+                                    <input type="file" id="anexo-receita" name="anexo-receita">
+                                </div>
+                            </div>
+                    
+                            <!-- Campos para medicamento de Tratamento -->
+                            <div id="tratamentoFields" style="display:none;">
+                                <div class="form-group">
+                                    <label for="inicio-tratamento">Data de Início do Tratamento:</label>
+                                    <input type="date" id="inicio-tratamento" name="inicio-tratamento">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tempo-tratamento">Tempo de Tratamento:</label>
+                                    <input type="text" id="tempo-tratamento" name="tempo-tratamento">
+                                    <select id="unidade-tempo" name="unidade-intervalo">
+                                        <option value="dias">dias</option>
+                                        <option value="semanas">semanas</option>
+                                        <option value="meses">meses</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="intervalo-tratamento">Intervalo entre as Doses:</label>
+                                    <input type="text" id="intervalo-tratamento" name="intervalo-tratamento">
+                                    <select id="unidade-intervalo" name="unidade-intervalo">
+                                        <option value="dias">dias</option>
+                                        <option value="semanas">semanas</option>
+                                        <option value="meses">meses</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dose-tratamento">Dose do Medicamento:</label>
+                                    <input type="number" id="dose-tratamento" name="dose-tratamento" min="1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profissional">Profissional:</label>
+                                    <input type="text" id="profissional" name="profissional">
+                                </div>
+                                <div class="form-group">
+                                    <label for="anexo-receita">Anexar Receita:</label>
+                                    <input type="file" id="anexo-receita" name="anexo-receita">
+                                </div>
+                                <div class="form-group">
+                                    <label for="termino-tratamento">Término do Tratamento:</label>
+                                    <input type="text" id="termino-tratamento" name="termino-tratamento" readonly>
+                                </div>
+                            </div>
+                    
+                            <!-- Campo para anexar receitas -->
+                    
+                            <div class="form-group">
+                                <button type="submit">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
