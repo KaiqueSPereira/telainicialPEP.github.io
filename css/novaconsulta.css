@@ -2,10 +2,12 @@
 .form-group {
     margin-bottom: 15px;
 }
+
 .form-group label {
-    display: block;
+    display: block; /* Alterado para block para alinhamento adequado */
     margin-bottom: 5px;
 }
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -15,17 +17,51 @@
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 .form-group input[type="file"] {
     border: none;
 }
-.form-group button {
+
+/* Novo grupo para alinhar os elementos horizontalmente */
+.form-group.horizontal-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group.horizontal-group label {
+    margin-right: 10px;
+}
+
+.form-group.horizontal-group input,
+.form-group.horizontal-group select {
+    width: auto; /* Ajuste a largura conforme necessário */
+    margin-right: 10px; /* Espaçamento entre os elementos */
+}
+
+.form-group.horizontal-group select:last-child {
+    margin-right: 0; /* Remove o espaçamento do último elemento */
+}
+.submit-group {
+    text-align: center;
+    margin-top: 20px; /* Adicionando um espaçamento superior para separar do restante do formulário */
+}
+
+.submit-group button {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #63e742;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    /* Adicionando display block para ocupar toda a largura disponível */
+    display: block;
+    /* Removendo a margem automática para garantir que o botão não seja deslocado horizontalmente */
+    margin: 0 auto;
+    /* Adicionando largura máxima para evitar que o botão ocupe toda a largura em telas grandes */
+    max-width: 200px; /* Você pode ajustar esse valor conforme necessário */
 }
-.form-group button:hover {
+
+submit-group button:hover {
     background-color: #0056b3;
 }
+

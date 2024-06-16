@@ -31,3 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+function showFileNames(input, fileNamesId) {
+    var fileNames = Array.from(input.files).map(file => file.name).join(', ');
+    document.getElementById(fileNamesId).textContent = fileNames;
+}

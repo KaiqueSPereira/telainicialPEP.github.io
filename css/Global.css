@@ -25,7 +25,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 40px;
+    padding: 8px 40px; /* Espaçamento interno para ajustar o menu */
 }
 
 .row {
@@ -71,8 +71,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #fff;
-    border-radius: 100px;
     padding: 8px 8px 8px 16px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -146,7 +144,7 @@ body {
     z-index: 10;
     opacity: 1;
     visibility: visible;
-    transform: translate(-64px, -16px);
+    transform: translate(-150px, -16px);
     transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
   }
   .controlusers {
@@ -163,4 +161,45 @@ body {
 .controlusers:hover {
     background-color: white;
     color: #000;
+}
+.custom-file-input input[type="file"] {
+    display: none;
+}
+
+.custom-file-input input[type="file"] {
+    display: none;
+}
+
+.custom-file-input button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #007bff; /* Cor do botão */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-input button img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.custom-file-input button:hover {
+    background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
+
+#file-names {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.file-name {
+    display: block;
+    margin-top: 5px;
 }
